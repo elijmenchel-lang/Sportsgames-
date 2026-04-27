@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Football Game</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+      background: green;
+      color: white;
+    }
+
+    canvas {
+      background: #0b6623;
+      margin-top: 20px;
+      border: 3px solid white;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Mini Football Game</h1>
+<p>Click to throw the ball!</p>
+
+<canvas id="game" width="400" height="500"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let ballX = 200;
+let ballY = 450;
+let velocityY = 0;
+let score = 0;
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // goal
+  ctx.fillStyle = "yellow";
+  ctx.fillRect(150, 50, 100, 10);
+
+  // ball
+  ctx.fillStyle = "white";
+  ctx.beginPath();
+  ctx.arc(ballX, ballY, 10, 0, Math.PI * 2);
+  ctx.fill();
+
+  // score
+  ctx.fillStyle = "white";
+  ctx.fillText("Score: " + score, 10, 20);
+
+  ballY += velocityY;
+  velocityY += 0.5;
+
+  // reset
+  if (ballY > 500) {
+    ballY = 450;
+    velocityY = 0;
+  }
+
+  // score check
+  if (ballY < 60 && ballX > 150 && ballX < 250) {
+    score++;
+    ballY = 450;
+    velocityY = 0;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+canvas.addEventListener("click", () => {
+  velocityY = -10;
+});
+
+draw();
+</script>
+
+</body>
+</html>
