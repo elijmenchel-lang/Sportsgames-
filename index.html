@@ -1,120 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sports Games</title>
+
     <style>
         body {
             font-family: Arial;
             text-align: center;
             background-color: #f2f2f2;
         }
+
+        .topnav {
+            margin: 20px;
+        }
+
+        .topnav button {
+            margin: 5px;
+        }
+
         .game {
             background: white;
             margin: 20px;
             padding: 20px;
             border-radius: 10px;
         }
+
         button {
             padding: 10px;
             background: blue;
             color: white;
             border: none;
             border-radius: 5px;
+            cursor: pointer;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
 
 <h1>Sports Games</h1>
 
-<div class="game">
-    <h2>Game 1</h2>
-    <button>Download</button>
+<div class="topnav">
+    <button>Home</button>
+    <button>Sports</button>
+    <button>Games</button>
 </div>
 
 <div class="game">
-    <h2>Game 2</h2>
-    <button>Download</button>
+    <h2>Retro Bowl</h2>
+
+    <a href="https://retro-bowl.com" target="_blank">
+        <button>Play Retro Bowl</button>
+    </a>
+
+    <iframe src="https://retro-bowl-six.vercel.app"></iframe>
+</div>
+
+<div class="game">
+    <h2>More Games Coming Soon</h2>
+    <button>Stay Tuned</button>
 </div>
 
 </body>
 </html>
-<h1>Sports Games</h1>
-
-<h2>Retro Bowl</h2>
-<a href="https://retro-bowl.com" target="_blank">
-  <button>Play Retro Bowl</button>
-</a>
-<iframe 
-  src="https://retro-bowl-six.vercel.app" 
-  style="width:100%; height:500px; border:none;">
-</iframe>
-
-<br><br>
-
-<a href="https://retro-bowl.com" target="_blank">
-  <button>Open Real Version</button>
-</a>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="shortcut icon" href="retro bowl.jpg" type="image">
-    <title>Retro Bowl | Alexx743</title>
-</head>
-<body>
-
-  <h2> Retro Bowl</h2>
-
-  <div class="topnav">
-    <a href="games.html">
-    <button title="Games" id="Games" class="divbutton"> Games </button> 
-  </a> 
-
-    <a href="Apps.html">
-    <button title="Apps" id="Apps" class="divbutton"> Apps</button>
-    </a>
-
-  <a href="index.html">
-    <button title="home" id="home" class="divbutton">home</button>
-  </a>
-
-  <a href="shooter.html">
-    <button title="shooter" class="divbutton">shooter</button>
-  </a>
-
-  <a href="sports.html">
-    <button title="sports" class="divbutton">Sports</button>
-  </a>
-
-  <a href="cars.html">
-    <button title="cars" class="divbutton">Cars</button>
-  </a>
-  </div>
-
-   
-    <iframe src="https://retro-bowl-six.vercel.app" class="retro-bowl-iframe"></iframe>
-
-    <button 
-    onclick="iffs('https://retro-bowl-six.vercel.app')"
-     class="fullscreen"></button>
-    
-     <script>
-      function iffs(href) {
-    const iframe = document.querySelector("iframe");
-    const stl = iframe.style;
-    stl.border = stl.outline = 'none';
-    stl.width = '100vw';
-    stl.height = '100vh';
-    stl.position = 'fixed';
-    stl.left = stl.right = stl.top = stl.bottom = '0';
-    iframe.src = href;
-    }
-    </script>
-
-<script>
-  document.addEventListener("keydown", 
-  async (e) => { if ("`" == e.key) window.parent.window.location.replace("https://google.com/") });
-</script>
