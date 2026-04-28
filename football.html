@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Football Game</title>
+<title>Football Game</title>
 
-  <style>
-    body {
-      margin: 0;
-      background: #0b6623;
-      font-family: Arial;
-      text-align: center;
-      color: white;
-    }
-
-    canvas {
-      background: #1e7f3f;
-      display: block;
-      margin: auto;
-      border: 3px solid white;
-    }
-  </style>
+<style>
+body {
+  margin: 0;
+  background: #0b6623;
+  text-align: center;
+  font-family: Arial;
+  color: white;
+}
+canvas {
+  display: block;
+  margin: auto;
+  border: 3px solid white;
+  background: #1e7f3f;
+}
+</style>
 </head>
 
 <body>
 
 <h1>🏈 Football Game</h1>
-<p>Click to pass • Aim with mouse</p>
+<p>Drag to aim, release to throw</p>
 
 <canvas id="game" width="800" height="400"></canvas>
+
+<audio id="throwSound" src="https://actions.google.com/sounds/v1/sports/football_throw.ogg"></audio>
+<audio id="catchSound" src="https://actions.google.com/sounds/v1/sports/catch_ball.ogg"></audio>
 
 <script>
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 
 // score
-let score = 0;
+let home = 0;
+let away = 0;
 
 // QB
 let qb = { x: 100, y: 200 };
@@ -41,102 +44,114 @@ let qb = { x: 100, y: 200 };
 // ball
 let ball = { x: qb.x, y: qb.y, dx: 0, dy: 0, thrown: false };
 
-// receivers
-let receivers = [
-  { x: 200, y: 100, route: "down" },
-  { x: 200, y: 300, route: "up" }
-];
+// drag
+let dragging = false;
+let dragX = 0;
+let dragY = 0;
 
-// defenders
-let defenders = [
-  { x: 400, y: 150 },
-  { x: 500, y: 250 }
-];
+// receiver
+let receiver = { x: 250, y: 200, caught: false };
 
-// mouse aim
-let mouse = { x: 0, y: 0 };
+// defender
+let defender = { x: 500, y: 200 };
+
+// sounds
+const throwSound = document.getElementById("throwSound");
+const catchSound = document.getElementById("catchSound");
+
+// drag controls
+canvas.addEventListener("mousedown", e => {
+  dragging = true;
+});
+
+canvas.addEventListener("mouseup", e => {
+  if (dragging) {
+    ball.dx = (dragX - qb.x) / 15;
+    ball.dy = (dragY - qb.y) / 15;
+    ball.thrown = true;
+    throwSound.play();
+  }
+  dragging = false;
+});
 
 canvas.addEventListener("mousemove", e => {
   const rect = canvas.getBoundingClientRect();
-  mouse.x = e.clientX - rect.left;
-  mouse.y = e.clientY - rect.top;
+  dragX = e.clientX - rect.left;
+  dragY = e.clientY - rect.top;
 });
 
-// throw ball
-canvas.addEventListener("click", () => {
-  if (!ball.thrown) {
-    ball.dx = (mouse.x - qb.x) / 20;
-    ball.dy = (mouse.y - qb.y) / 20;
-    ball.thrown = true;
-  }
-});
-
+// field
 function drawField() {
   ctx.fillStyle = "#1e7f3f";
-  ctx.fillRect(0, 0, 800, 400);
+  ctx.fillRect(0,0,800,400);
 
-  // end zone
   ctx.fillStyle = "yellow";
-  ctx.fillRect(750, 0, 50, 400);
+  ctx.fillRect(750,0,50,400);
 }
 
+// scoreboard
 function drawScore() {
   ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, 800, 40);
+  ctx.fillRect(0,0,800,40);
 
   ctx.fillStyle = "white";
   ctx.font = "20px Arial";
-  ctx.fillText("Score: " + score, 20, 25);
+  ctx.fillText("HOME: " + home, 20, 25);
+  ctx.fillText("AWAY: " + away, 650, 25);
 }
 
-function drawQB() {
-  ctx.fillStyle = "blue";
-  ctx.fillRect(qb.x - 10, qb.y - 10, 20, 20);
+// stick player
+function drawPlayer(x,y,color) {
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 3;
+
+  // head
+  ctx.beginPath();
+  ctx.arc(x, y-10, 5, 0, Math.PI*2);
+  ctx.stroke();
+
+  // body
+  ctx.beginPath();
+  ctx.moveTo(x, y-5);
+  ctx.lineTo(x, y+10);
+  ctx.stroke();
+
+  // arms
+  ctx.beginPath();
+  ctx.moveTo(x-5,y);
+  ctx.lineTo(x+5,y);
+  ctx.stroke();
+
+  // legs
+  ctx.beginPath();
+  ctx.moveTo(x,y+10);
+  ctx.lineTo(x-5,y+20);
+  ctx.moveTo(x,y+10);
+  ctx.lineTo(x+5,y+20);
+  ctx.stroke();
 }
 
-function drawReceivers() {
-  ctx.fillStyle = "cyan";
-  receivers.forEach(r => {
-    ctx.fillRect(r.x - 10, r.y - 10, 20, 20);
-  });
-}
-
-function drawDefenders() {
-  ctx.fillStyle = "red";
-  defenders.forEach(d => {
-    ctx.fillRect(d.x - 10, d.y - 10, 20, 20);
-  });
-}
-
-// football shape
+// football
 function drawBall() {
   ctx.fillStyle = "brown";
   ctx.beginPath();
-  ctx.ellipse(ball.x, ball.y, 8, 5, 0, 0, Math.PI * 2);
+  ctx.ellipse(ball.x, ball.y, 8, 5, 0, 0, Math.PI*2);
   ctx.fill();
 }
 
-function moveReceivers() {
-  receivers.forEach(r => {
-    if (r.route === "down") r.x += 1.5;
-    if (r.route === "up") {
-      r.x += 1.5;
-      r.y -= 0.5;
-    }
-  });
+// aim line
+function drawAim() {
+  if (dragging) {
+    ctx.strokeStyle = "white";
+    ctx.beginPath();
+    ctx.moveTo(qb.x, qb.y);
+    ctx.lineTo(dragX, dragY);
+    ctx.stroke();
+  }
 }
 
-function moveDefenders() {
-  defenders.forEach(d => {
-    let target = receivers[0];
-    let dx = target.x - d.x;
-    let dy = target.y - d.y;
-    d.x += dx * 0.01;
-    d.y += dy * 0.01;
-  });
-}
-
-function updateBall() {
+// logic
+function update() {
   if (ball.thrown) {
     ball.x += ball.dx;
     ball.y += ball.dy;
@@ -144,67 +159,60 @@ function updateBall() {
     ball.x = qb.x;
     ball.y = qb.y;
   }
+
+  // receiver moves
+  if (!receiver.caught) receiver.x += 1.5;
+
+  // defender chases
+  defender.x -= 0.5;
+
+  // catch
+  if (
+    Math.abs(ball.x - receiver.x) < 10 &&
+    Math.abs(ball.y - receiver.y) < 10
+  ) {
+    receiver.caught = true;
+    catchSound.play();
+  }
+
+  // run after catch
+  if (receiver.caught) {
+    receiver.x += 2;
+  }
+
+  // touchdown
+  if (receiver.x > 750) {
+    home++;
+    reset();
+  }
+
+  // miss → reset
+  if (ball.x > 800 || ball.y < 0 || ball.y > 400) {
+    away++;
+    reset();
+  }
 }
 
-// catch logic
-function checkCatch() {
-  receivers.forEach(r => {
-    if (
-      Math.abs(ball.x - r.x) < 15 &&
-      Math.abs(ball.y - r.y) < 15
-    ) {
-      // caught → run to endzone
-      ball.thrown = false;
-      r.route = "run";
-      r.caught = true;
-    }
-  });
-}
-
-// touchdown
-function checkTouchdown() {
-  receivers.forEach(r => {
-    if (r.caught) {
-      r.x += 2;
-
-      if (r.x > 750) {
-        score++;
-        reset();
-      }
-    }
-  });
-}
-
-// reset play
+// reset
 function reset() {
   ball.thrown = false;
-
-  receivers = [
-    { x: 200, y: 100, route: "down" },
-    { x: 200, y: 300, route: "up" }
-  ];
-
-  defenders = [
-    { x: 400, y: 150 },
-    { x: 500, y: 250 }
-  ];
+  receiver = { x: 250, y: 200, caught: false };
+  defender = { x: 500, y: 200 };
 }
 
+// loop
 function gameLoop() {
-  ctx.clearRect(0, 0, 800, 400);
+  ctx.clearRect(0,0,800,400);
 
   drawField();
   drawScore();
-  drawQB();
-  drawReceivers();
-  drawDefenders();
+  drawPlayer(qb.x,qb.y,"blue");
+  drawPlayer(receiver.x,receiver.y,"cyan");
+  drawPlayer(defender.x,defender.y,"red");
   drawBall();
+  drawAim();
 
-  moveReceivers();
-  moveDefenders();
-  updateBall();
-  checkCatch();
-  checkTouchdown();
+  update();
 
   requestAnimationFrame(gameLoop);
 }
