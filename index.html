@@ -1,80 +1,413 @@
+Here it is — select all and copy:
+
+```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sports Games Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALL GAMES</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap');
 
-  <style>
-    body {
-      font-family: Arial;
-      background: #111;
-      color: white;
-      text-align: center;
-    }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    h1 {
-      margin-top: 20px;
-    }
+:root {
+  --bg: #0b0b0f;
+  --card: #13131a;
+  --border: #1e1e2a;
+  --accent: #f5c842;
+  --accent2: #ff6b35;
+  --white: #f0efe8;
+  --muted: #4a4a5a;
+  --green: #4ade80;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
+html { scroll-behavior: smooth; }
 
-    .game-card {
-      background: #222;
-      padding: 20px;
-      border-radius: 15px;
-      transition: 0.3s;
-    }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    .game-card:hover {
-      transform: scale(1.05);
-      background: #333;
-    }
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
 
-    button {
-      margin-top: 10px;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #28a745;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+header {
+  position: relative;
+  z-index: 1;
+  padding: 60px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.site-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 6px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.site-title {
+  font-size: clamp(48px, 10vw, 100px);
+  font-weight: 800;
+  letter-spacing: -4px;
+  line-height: 0.9;
+  color: var(--white);
+}
+
+.site-title span { color: var(--accent); }
+
+.site-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  margin: 20px auto 0;
+}
+
+.site-subtitle {
+  margin-top: 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--muted);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 30px 80px;
+}
+
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.game-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+  animation: fadeUp 0.5s both;
+}
+
+.game-card:nth-child(2) { animation-delay: 0.1s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.game-card:hover .card-glow { opacity: 1; }
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(245,200,66,0.07) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.card-thumb {
+  height: 180px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.thumb-drive {
+  background: linear-gradient(135deg, #0e1a0e 0%, #1a2e1a 50%, #0a120a 100%);
+}
+
+.thumb-football {
+  background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 50%, #0a081a 100%);
+}
+
+.thumb-drive .car-icon {
+  font-size: 44px;
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 4px 12px rgba(255,107,53,0.6));
+  animation: carBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes carBounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(-7px); }
+}
+
+.thumb-drive .flag-icon {
+  position: absolute;
+  bottom: 50px;
+  right: 55px;
+  font-size: 28px;
+  animation: flagWave 1s ease-in-out infinite alternate;
+}
+
+@keyframes flagWave {
+  from { transform: rotate(-5deg); }
+  to   { transform: rotate(5deg); }
+}
+
+.thumb-football .field-lines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 38px,
+    rgba(68,204,68,0.1) 38px,
+    rgba(68,204,68,0.1) 40px
+  );
+}
+
+.thumb-football .ball-icon {
+  font-size: 54px;
+  position: relative;
+  filter: drop-shadow(0 4px 20px rgba(245,200,66,0.5));
+  animation: ballSpin 3s ease-in-out infinite;
+}
+
+@keyframes ballSpin {
+  0%,100% { transform: rotate(-8deg) scale(1); }
+  50%      { transform: rotate(8deg) scale(1.08); }
+}
+
+.thumb-football .stars-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 20% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.3) 0%, transparent 100%);
+}
+
+.card-body { padding: 22px 24px 24px; }
+
+.card-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.card-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.card-meta {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.badge.hot { border-color: var(--accent2); color: var(--accent2); }
+.badge.new { border-color: var(--green); color: var(--green); }
+
+.play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 20px;
+  background: var(--accent);
+  border: none;
+  color: #000;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+}
+
+.play-btn:hover { background: #ffe04a; }
+
+.play-btn .arrow {
+  font-size: 18px;
+  transition: transform 0.15s;
+}
+
+.play-btn:hover .arrow { transform: translateX(5px); }
+
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-brand {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+
+@media (max-width: 600px) {
+  header { padding: 40px 20px 30px; }
+  main { padding: 40px 16px 60px; }
+  .games-grid { grid-template-columns: 1fr; }
+  footer { padding: 20px; justify-content: center; text-align: center; }
+}
+</style>
 </head>
-
 <body>
 
-<h1>🏈 Sports Games Hub</h1>
+<header>
+  <div class="site-label">GAME PORTAL · EST. 2025</div>
+  <h1 class="site-title">ALL <span>GAMES</span></h1>
+  <p class="site-subtitle">PICK A GAME · START PLAYING · NO BS</p>
+</header>
 
-<div class="grid">
+<main>
+  <div class="section-label">FEATURED GAMES</div>
 
-  <div class="game-card">
-    <h2>Retro Bowl</h2>
-    <p>External version</p>
-    <a href="https://poki.com/en/g/retro-bowl" target="_blank">
-      <button>Play</button>
-    </a>
+  <div class="games-grid">
+
+    <!-- Drive Mad -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-drive">
+        <svg style="position:absolute;bottom:0;left:0;right:0" viewBox="0 0 320 50" preserveAspectRatio="none" height="50" width="100%">
+          <path d="M0,35 Q40,20 80,35 Q120,50 160,30 Q200,10 240,30 Q280,48 320,35 L320,50 L0,50Z" fill="#1e2a1e"/>
+          <path d="M0,35 Q40,20 80,35 Q120,50 160,30 Q200,10 240,30 Q280,48 320,35" fill="none" stroke="#4ade80" stroke-width="2.5"/>
+        </svg>
+        <div class="car-icon">🚗</div>
+        <div class="flag-icon">🚩</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">PHYSICS · DRIVING</div>
+        <div class="card-title">DRIVE MAD</div>
+        <div class="card-desc">Race your car through insane physics levels. Don't flip over. Reach the flag. Easy to learn, brutal to beat.</div>
+        <div class="card-meta">
+          <span class="badge hot">🔥 HOT</span>
+          <span class="badge">PHYSICS</span>
+          <span class="badge">10 LEVELS</span>
+        </div>
+        <a class="play-btn" href="drivemad.html">
+          PLAY NOW <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Retro Bowl -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-football">
+        <div class="stars-bg"></div>
+        <div class="field-lines"></div>
+        <div class="ball-icon">🏈</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">SPORTS · FOOTBALL</div>
+        <div class="card-title">RETRO BOWL</div>
+        <div class="card-desc">Pick your team, call your plays, and drive down the field. Pixel-perfect retro football with real game logic.</div>
+        <div class="card-meta">
+          <span class="badge new">★ NEW</span>
+          <span class="badge">RETRO</span>
+          <span class="badge">12 TEAMS</span>
+        </div>
+        <a class="play-btn" href="football.html">
+          PLAY NOW <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+
   </div>
+</main>
 
-  <div class="game-card">
-    <h2>Football Game</h2>
-    <p>Built by me</p>
-    <a href="football.html">
-      <button>Play</button>
-    </a>
-  </div>
-
-  <div class="game-card">
-    <h2>More Games</h2>
-    <p>Coming soon</p>
-    <button>...</button>
-  </div>
-
-</div>
+<footer>
+  <div class="footer-brand">ALL GAMES</div>
+  <div class="footer-copy">MADE BY ELI · 2025</div>
+</footer>
 
 </body>
 </html>
+```
+
+Copy everything inside the code block, paste into a new file, save as `index.html`. Done!
