@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +18,7 @@
   --white: #f0efe8;
   --muted: #4a4a5a;
   --green: #4ade80;
+  --purple: #a855f7;
 }
 
 html { scroll-behavior: smooth; }
@@ -129,6 +129,7 @@ main {
 }
 
 .game-card:nth-child(2) { animation-delay: 0.1s; }
+.game-card:nth-child(3) { animation-delay: 0.2s; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -168,6 +169,10 @@ main {
   background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 50%, #0a081a 100%);
 }
 
+.thumb-bitlife {
+  background: linear-gradient(135deg, #1a0a2e 0%, #2e1a4e 50%, #0a0818 100%);
+}
+
 .game-wordmark {
   font-size: 42px;
   font-weight: 800;
@@ -181,6 +186,7 @@ main {
 
 .thumb-drive .game-wordmark span { color: var(--accent2); }
 .thumb-football .game-wordmark span { color: var(--accent); }
+.thumb-bitlife .game-wordmark span { color: var(--purple); }
 
 .thumb-drive .road-line {
   position: absolute;
@@ -210,6 +216,37 @@ main {
     radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,0.2) 0%, transparent 100%),
     radial-gradient(1px 1px at 50% 70%, rgba(255,255,255,0.15) 0%, transparent 100%),
     radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.2) 0%, transparent 100%);
+}
+
+.thumb-bitlife .life-dots {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(2px 2px at 15% 20%, rgba(168,85,247,0.5) 0%, transparent 100%),
+    radial-gradient(2px 2px at 80% 15%, rgba(168,85,247,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 40% 70%, rgba(168,85,247,0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 70% 60%, rgba(168,85,247,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 25% 80%, rgba(168,85,247,0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 90% 80%, rgba(168,85,247,0.2) 0%, transparent 100%);
+}
+
+.thumb-bitlife .life-bar {
+  position: absolute;
+  bottom: 16px;
+  left: 20px; right: 20px;
+  height: 6px;
+  background: #2a1a3e;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.thumb-bitlife .life-bar::after {
+  content: '';
+  display: block;
+  width: 72%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), #c084fc);
+  border-radius: 3px;
 }
 
 .card-body { padding: 22px 24px 24px; }
@@ -255,6 +292,7 @@ main {
 
 .badge.hot { border-color: var(--accent2); color: var(--accent2); }
 .badge.new { border-color: var(--green); color: var(--green); }
+.badge.purple { border-color: var(--purple); color: var(--purple); }
 
 .play-btn {
   display: flex;
@@ -368,6 +406,26 @@ footer {
       </div>
     </div>
 
+    <!-- BitLife -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-bitlife">
+        <div class="life-dots"></div>
+        <div class="game-wordmark">BIT<br><span>LIFE</span></div>
+        <div class="life-bar"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">SIMULATION · LIFE</div>
+        <div class="card-title">BITLIFE</div>
+        <div class="card-desc">Live a life, make choices, face consequences. Be a doctor, a criminal, or anything in between. Your life, your rules.</div>
+        <div class="card-meta">
+          <span class="badge purple">★ POPULAR</span>
+          <span class="badge">SIMULATION</span>
+        </div>
+        <a class="play-btn" href="bitlife.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
   </div>
 </main>
 
@@ -378,4 +436,3 @@ footer {
 
 </body>
 </html>
-```
