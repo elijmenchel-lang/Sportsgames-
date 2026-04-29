@@ -1,4 +1,3 @@
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -169,32 +168,26 @@ main {
   background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 50%, #0a081a 100%);
 }
 
-.thumb-drive .car-icon {
-  font-size: 44px;
+.game-wordmark {
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  line-height: 1;
+  text-align: center;
+}
+
+.thumb-drive .game-wordmark span { color: var(--accent2); }
+.thumb-football .game-wordmark span { color: var(--accent); }
+
+.thumb-drive .road-line {
   position: absolute;
-  bottom: 44px;
-  left: 50%;
-  transform: translateX(-50%);
-  filter: drop-shadow(0 4px 12px rgba(255,107,53,0.6));
-  animation: carBounce 1.5s ease-in-out infinite;
-}
-
-@keyframes carBounce {
-  0%,100% { transform: translateX(-50%) translateY(0); }
-  50%      { transform: translateX(-50%) translateY(-7px); }
-}
-
-.thumb-drive .flag-icon {
-  position: absolute;
-  bottom: 50px;
-  right: 55px;
-  font-size: 28px;
-  animation: flagWave 1s ease-in-out infinite alternate;
-}
-
-@keyframes flagWave {
-  from { transform: rotate(-5deg); }
-  to   { transform: rotate(5deg); }
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: #4ade80;
+  box-shadow: 0 0 12px rgba(74,222,128,0.5);
 }
 
 .thumb-football .field-lines {
@@ -204,31 +197,19 @@ main {
     90deg,
     transparent,
     transparent 38px,
-    rgba(68,204,68,0.1) 38px,
-    rgba(68,204,68,0.1) 40px
+    rgba(68,204,68,0.08) 38px,
+    rgba(68,204,68,0.08) 40px
   );
-}
-
-.thumb-football .ball-icon {
-  font-size: 54px;
-  position: relative;
-  filter: drop-shadow(0 4px 20px rgba(245,200,66,0.5));
-  animation: ballSpin 3s ease-in-out infinite;
-}
-
-@keyframes ballSpin {
-  0%,100% { transform: rotate(-8deg) scale(1); }
-  50%      { transform: rotate(8deg) scale(1.08); }
 }
 
 .thumb-football .stars-bg {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(1px 1px at 20% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 50% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.3) 0%, transparent 100%);
+    radial-gradient(1px 1px at 20% 25%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 70%, rgba(255,255,255,0.15) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.2) 0%, transparent 100%);
 }
 
 .card-body { padding: 22px 24px 24px; }
@@ -352,25 +333,18 @@ footer {
     <div class="game-card">
       <div class="card-glow"></div>
       <div class="card-thumb thumb-drive">
-        <svg style="position:absolute;bottom:0;left:0;right:0" viewBox="0 0 320 50" preserveAspectRatio="none" height="50" width="100%">
-          <path d="M0,35 Q40,20 80,35 Q120,50 160,30 Q200,10 240,30 Q280,48 320,35 L320,50 L0,50Z" fill="#1e2a1e"/>
-          <path d="M0,35 Q40,20 80,35 Q120,50 160,30 Q200,10 240,30 Q280,48 320,35" fill="none" stroke="#4ade80" stroke-width="2.5"/>
-        </svg>
-        <div class="car-icon">🚗</div>
-        <div class="flag-icon">🚩</div>
+        <div class="game-wordmark">DRIVE<br><span>MAD</span></div>
+        <div class="road-line"></div>
       </div>
       <div class="card-body">
         <div class="card-tag">PHYSICS · DRIVING</div>
-        <div class="card-title">DRIVE MAD</div>
+        <div class="card-title">FULL DRIVE MAD</div>
         <div class="card-desc">Race your car through insane physics levels. Don't flip over. Reach the flag. Easy to learn, brutal to beat.</div>
         <div class="card-meta">
           <span class="badge hot">🔥 HOT</span>
           <span class="badge">PHYSICS</span>
-          <span class="badge">10 LEVELS</span>
         </div>
-        <a class="play-btn" href="drivemad.html">
-          PLAY NOW <span class="arrow">→</span>
-        </a>
+        <a class="play-btn" href="drivemad.html">PLAY NOW <span class="arrow">→</span></a>
       </div>
     </div>
 
@@ -380,7 +354,7 @@ footer {
       <div class="card-thumb thumb-football">
         <div class="stars-bg"></div>
         <div class="field-lines"></div>
-        <div class="ball-icon">🏈</div>
+        <div class="game-wordmark">RETRO<br><span>BOWL</span></div>
       </div>
       <div class="card-body">
         <div class="card-tag">SPORTS · FOOTBALL</div>
@@ -389,11 +363,8 @@ footer {
         <div class="card-meta">
           <span class="badge new">★ NEW</span>
           <span class="badge">RETRO</span>
-          <span class="badge">12 TEAMS</span>
         </div>
-        <a class="play-btn" href="football.html">
-          PLAY NOW <span class="arrow">→</span>
-        </a>
+        <a class="play-btn" href="football.html">PLAY NOW <span class="arrow">→</span></a>
       </div>
     </div>
 
