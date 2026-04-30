@@ -21,6 +21,9 @@
   --purple: #a855f7;
   --blue: #38bdf8;
   --pink: #f472b6;
+  --red: #f87171;
+  --orange: #fb923c;
+  --teal: #2dd4bf;
 }
 
 html { scroll-behavior: smooth; }
@@ -42,6 +45,103 @@ body::before {
   z-index: 0;
   opacity: 0.4;
 }
+
+/* ---- PASSCODE SCREEN ---- */
+#passcode-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.lock-icon {
+  font-size: 52px;
+  margin-bottom: 8px;
+}
+
+.passcode-title {
+  font-size: clamp(18px, 4vw, 32px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--white);
+}
+
+.passcode-sub {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.passcode-box {
+  background: var(--card);
+  border: 2px solid var(--border);
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 320px;
+}
+
+.passcode-input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  color: var(--white);
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  letter-spacing: 4px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.passcode-input:focus { border-color: var(--accent); }
+
+.passcode-input.error { border-color: var(--red); animation: shake 0.3s; }
+
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  border: none;
+  color: #000;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.submit-btn:hover { background: #ffe04a; }
+
+.access-msg {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  height: 18px;
+  color: var(--red);
+}
+
+.access-msg.granted { color: var(--green); }
+
+/* ---- MAIN SITE ---- */
+#main-site { display: none; }
 
 header {
   position: relative;
@@ -92,7 +192,7 @@ header {
 main {
   position: relative;
   z-index: 1;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 60px 30px 80px;
 }
@@ -117,7 +217,7 @@ main {
 
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
 
@@ -130,10 +230,17 @@ main {
   animation: fadeUp 0.5s both;
 }
 
-.game-card:nth-child(2) { animation-delay: 0.08s; }
-.game-card:nth-child(3) { animation-delay: 0.16s; }
-.game-card:nth-child(4) { animation-delay: 0.24s; }
-.game-card:nth-child(5) { animation-delay: 0.32s; }
+.game-card:nth-child(2)  { animation-delay: 0.05s; }
+.game-card:nth-child(3)  { animation-delay: 0.10s; }
+.game-card:nth-child(4)  { animation-delay: 0.15s; }
+.game-card:nth-child(5)  { animation-delay: 0.20s; }
+.game-card:nth-child(6)  { animation-delay: 0.25s; }
+.game-card:nth-child(7)  { animation-delay: 0.30s; }
+.game-card:nth-child(8)  { animation-delay: 0.35s; }
+.game-card:nth-child(9)  { animation-delay: 0.40s; }
+.game-card:nth-child(10) { animation-delay: 0.45s; }
+.game-card:nth-child(11) { animation-delay: 0.50s; }
+.game-card:nth-child(12) { animation-delay: 0.55s; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -157,7 +264,7 @@ main {
 }
 
 .card-thumb {
-  height: 180px;
+  height: 160px;
   position: relative;
   display: flex;
   align-items: center;
@@ -165,124 +272,82 @@ main {
   overflow: hidden;
 }
 
-.thumb-drive    { background: linear-gradient(135deg, #0e1a0e 0%, #1a2e1a 50%, #0a120a 100%); }
-.thumb-football { background: linear-gradient(135deg, #0a0a1e 0%, #1a1a3e 50%, #0a081a 100%); }
-.thumb-bitlife  { background: linear-gradient(135deg, #1a0a2e 0%, #2e1a4e 50%, #0a0818 100%); }
-.thumb-slope    { background: linear-gradient(135deg, #001a2e 0%, #002e4e 50%, #000e1a 100%); }
-.thumb-eggy     { background: linear-gradient(135deg, #1a1400 0%, #2e2200 50%, #0a0e00 100%); }
+.thumb-drive      { background: linear-gradient(135deg, #0e1a0e, #1a2e1a, #0a120a); }
+.thumb-football   { background: linear-gradient(135deg, #0a0a1e, #1a1a3e, #0a081a); }
+.thumb-slope      { background: linear-gradient(135deg, #001a2e, #002e4e, #000e1a); }
+.thumb-eggy       { background: linear-gradient(135deg, #1a1400, #2e2200, #0a0e00); }
+.thumb-escape     { background: linear-gradient(135deg, #1a0a00, #2e1800, #0a0800); }
+.thumb-basketball { background: linear-gradient(135deg, #1a0800, #2e1000, #0a0400); }
+.thumb-cookie     { background: linear-gradient(135deg, #1a1000, #2e1c00, #0a0a00); }
+.thumb-flappy     { background: linear-gradient(135deg, #001a0e, #002e18, #000e08); }
+.thumb-geometry   { background: linear-gradient(135deg, #0a001a, #18002e, #06000e); }
+.thumb-holeio     { background: linear-gradient(135deg, #001818, #002e2e, #000e0e); }
+.thumb-stickman   { background: linear-gradient(135deg, #0e0e1a, #1a1a2e, #080818); }
+.thumb-subway     { background: linear-gradient(135deg, #1a0a1a, #2e182e, #0e040e); }
+.thumb-taptap     { background: linear-gradient(135deg, #001a1a, #00302e, #000e0e); }
+.thumb-tetris     { background: linear-gradient(135deg, #0a001a, #14002e, #060010); }
 
 .game-wordmark {
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 800;
-  letter-spacing: -2px;
+  letter-spacing: -1px;
   color: #fff;
   position: relative;
   z-index: 2;
-  line-height: 1;
+  line-height: 1.05;
   text-align: center;
+  white-space: nowrap;
 }
 
-.thumb-drive .game-wordmark span    { color: var(--accent2); }
-.thumb-football .game-wordmark span { color: var(--accent); }
-.thumb-bitlife .game-wordmark span  { color: var(--purple); }
-.thumb-slope .game-wordmark span    { color: var(--blue); }
-.thumb-eggy .game-wordmark span     { color: var(--pink); }
+.thumb-drive .game-wordmark span      { color: var(--accent2); }
+.thumb-football .game-wordmark span   { color: var(--accent); }
+.thumb-slope .game-wordmark span      { color: var(--blue); }
+.thumb-eggy .game-wordmark span       { color: var(--pink); }
+.thumb-escape .game-wordmark span     { color: var(--red); }
+.thumb-basketball .game-wordmark span { color: var(--orange); }
+.thumb-cookie .game-wordmark span     { color: var(--accent); }
+.thumb-flappy .game-wordmark span     { color: var(--green); }
+.thumb-geometry .game-wordmark span   { color: var(--purple); }
+.thumb-holeio .game-wordmark span     { color: var(--teal); }
+.thumb-stickman .game-wordmark span   { color: var(--blue); }
+.thumb-subway .game-wordmark span     { color: var(--pink); }
+.thumb-taptap .game-wordmark span     { color: var(--teal); }
+.thumb-tetris .game-wordmark span     { color: var(--purple); }
 
 .thumb-drive .road-line {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: #4ade80;
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; background: #4ade80;
   box-shadow: 0 0 12px rgba(74,222,128,0.5);
 }
 
 .thumb-football .field-lines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    90deg, transparent, transparent 38px,
-    rgba(68,204,68,0.08) 38px, rgba(68,204,68,0.08) 40px
-  );
-}
-
-.thumb-football .stars-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(1px 1px at 20% 25%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,0.2) 0%, transparent 100%),
-    radial-gradient(1px 1px at 50% 70%, rgba(255,255,255,0.15) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.2) 0%, transparent 100%);
-}
-
-.thumb-bitlife .life-dots {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(2px 2px at 15% 20%, rgba(168,85,247,0.5) 0%, transparent 100%),
-    radial-gradient(2px 2px at 80% 15%, rgba(168,85,247,0.4) 0%, transparent 100%),
-    radial-gradient(2px 2px at 40% 70%, rgba(168,85,247,0.3) 0%, transparent 100%),
-    radial-gradient(2px 2px at 70% 60%, rgba(168,85,247,0.4) 0%, transparent 100%);
-}
-
-.thumb-bitlife .life-bar {
-  position: absolute;
-  bottom: 16px;
-  left: 20px; right: 20px;
-  height: 6px;
-  background: #2a1a3e;
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.thumb-bitlife .life-bar::after {
-  content: '';
-  display: block;
-  width: 72%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--purple), #c084fc);
-  border-radius: 3px;
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 38px, rgba(68,204,68,0.08) 38px, rgba(68,204,68,0.08) 40px);
 }
 
 .thumb-slope .slope-lines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    135deg, transparent, transparent 18px,
-    rgba(56,189,248,0.07) 18px, rgba(56,189,248,0.07) 20px
-  );
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(135deg, transparent, transparent 18px, rgba(56,189,248,0.07) 18px, rgba(56,189,248,0.07) 20px);
 }
 
 .thumb-slope .slope-line {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--blue);
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 3px; background: var(--blue);
   box-shadow: 0 0 12px rgba(56,189,248,0.6);
 }
 
-.thumb-eggy .eggy-dots {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(2px 2px at 20% 30%, rgba(244,114,182,0.4) 0%, transparent 100%),
-    radial-gradient(2px 2px at 75% 20%, rgba(244,114,182,0.3) 0%, transparent 100%),
-    radial-gradient(2px 2px at 50% 65%, rgba(244,114,182,0.3) 0%, transparent 100%),
-    radial-gradient(2px 2px at 85% 70%, rgba(244,114,182,0.2) 0%, transparent 100%);
-}
-
-.card-body { padding: 22px 24px 24px; }
+.card-body { padding: 18px 20px 20px; }
 
 .card-tag {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
   letter-spacing: 4px;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .card-title {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.5px;
   margin-bottom: 8px;
@@ -290,46 +355,50 @@ main {
 
 .card-desc {
   font-family: 'DM Mono', monospace;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
   line-height: 1.7;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .card-meta {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
 }
 
 .badge {
   font-family: 'DM Mono', monospace;
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 2px;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border: 1px solid var(--border);
   color: var(--muted);
 }
 
 .badge.hot    { border-color: var(--accent2); color: var(--accent2); }
 .badge.new    { border-color: var(--green);   color: var(--green); }
-.badge.purple { border-color: var(--purple);  color: var(--purple); }
 .badge.blue   { border-color: var(--blue);    color: var(--blue); }
 .badge.pink   { border-color: var(--pink);    color: var(--pink); }
+.badge.red    { border-color: var(--red);     color: var(--red); }
+.badge.orange { border-color: var(--orange);  color: var(--orange); }
+.badge.gold   { border-color: var(--accent);  color: var(--accent); }
+.badge.purple { border-color: var(--purple);  color: var(--purple); }
+.badge.teal   { border-color: var(--teal);    color: var(--teal); }
 
 .play-btn {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 15px 20px;
+  padding: 13px 18px;
   background: var(--accent);
   border: none;
   color: #000;
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 2px;
   cursor: pointer;
   transition: background 0.15s;
@@ -339,7 +408,7 @@ main {
 .play-btn:hover { background: #ffe04a; }
 
 .play-btn .arrow {
-  font-size: 18px;
+  font-size: 16px;
   transition: transform 0.15s;
 }
 
@@ -357,11 +426,7 @@ footer {
   gap: 12px;
 }
 
-.footer-brand {
-  font-weight: 800;
-  font-size: 16px;
-  color: var(--accent);
-}
+.footer-brand { font-weight: 800; font-size: 16px; color: var(--accent); }
 
 .footer-copy {
   font-family: 'DM Mono', monospace;
@@ -375,10 +440,26 @@ footer {
   main { padding: 40px 16px 60px; }
   .games-grid { grid-template-columns: 1fr; }
   footer { padding: 20px; justify-content: center; text-align: center; }
+  .passcode-box { width: 90%; padding: 28px 24px; }
 }
 </style>
 </head>
 <body>
+
+<!-- PASSCODE SCREEN -->
+<div id="passcode-screen">
+  <div class="lock-icon">🔒</div>
+  <div class="passcode-title">RESTRICTED ACCESS</div>
+  <div class="passcode-sub">ENTER PASSCODE TO CONTINUE</div>
+  <div class="passcode-box">
+    <input class="passcode-input" id="passcode-input" type="password" placeholder="••••••" maxlength="20" onkeydown="if(event.key==='Enter')checkCode()">
+    <button class="submit-btn" onclick="checkCode()">SUBMIT</button>
+    <div class="access-msg" id="access-msg"></div>
+  </div>
+</div>
+
+<!-- MAIN SITE -->
+<div id="main-site">
 
 <header>
   <div class="site-label">GAME PORTAL · EST. 2025</div>
@@ -388,7 +469,6 @@ footer {
 
 <main>
   <div class="section-label">FEATURED GAMES</div>
-
   <div class="games-grid">
 
     <!-- Drive Mad -->
@@ -401,11 +481,8 @@ footer {
       <div class="card-body">
         <div class="card-tag">PHYSICS · DRIVING</div>
         <div class="card-title">FULL DRIVE MAD</div>
-        <div class="card-desc">Race your car through insane physics levels. Don't flip over. Reach the flag. Easy to learn, brutal to beat.</div>
-        <div class="card-meta">
-          <span class="badge hot">🔥 HOT</span>
-          <span class="badge">PHYSICS</span>
-        </div>
+        <div class="card-desc">Race your car through insane physics levels. Don't flip over. Reach the flag.</div>
+        <div class="card-meta"><span class="badge hot">🔥 HOT</span><span class="badge">PHYSICS</span></div>
         <a class="play-btn" href="drivemad.html">PLAY NOW <span class="arrow">→</span></a>
       </div>
     </div>
@@ -414,39 +491,15 @@ footer {
     <div class="game-card">
       <div class="card-glow"></div>
       <div class="card-thumb thumb-football">
-        <div class="stars-bg"></div>
         <div class="field-lines"></div>
         <div class="game-wordmark">RETRO<br><span>BOWL</span></div>
       </div>
       <div class="card-body">
         <div class="card-tag">SPORTS · FOOTBALL</div>
         <div class="card-title">RETRO BOWL</div>
-        <div class="card-desc">Pick your team, call your plays, and drive down the field. Pixel-perfect retro football with real game logic.</div>
-        <div class="card-meta">
-          <span class="badge new">★ NEW</span>
-          <span class="badge">RETRO</span>
-        </div>
+        <div class="card-desc">Pick your team, call plays, and drive down the field. Real game logic.</div>
+        <div class="card-meta"><span class="badge new">★ NEW</span><span class="badge">RETRO</span></div>
         <a class="play-btn" href="football.html">PLAY NOW <span class="arrow">→</span></a>
-      </div>
-    </div>
-
-    <!-- BitLife -->
-    <div class="game-card">
-      <div class="card-glow"></div>
-      <div class="card-thumb thumb-bitlife">
-        <div class="life-dots"></div>
-        <div class="game-wordmark">BIT<br><span>LIFE</span></div>
-        <div class="life-bar"></div>
-      </div>
-      <div class="card-body">
-        <div class="card-tag">SIMULATION · LIFE</div>
-        <div class="card-title">BITLIFE</div>
-        <div class="card-desc">Live a life, make choices, face consequences. Be a doctor, a criminal, or anything in between. Your life, your rules.</div>
-        <div class="card-meta">
-          <span class="badge purple">★ POPULAR</span>
-          <span class="badge">SIMULATION</span>
-        </div>
-        <a class="play-btn" href="bitlife.html">PLAY NOW <span class="arrow">→</span></a>
       </div>
     </div>
 
@@ -455,17 +508,14 @@ footer {
       <div class="card-glow"></div>
       <div class="card-thumb thumb-slope">
         <div class="slope-lines"></div>
-        <div class="game-wordmark">SL<br><span>OPE</span></div>
+        <div class="game-wordmark"><span>SLOPE</span></div>
         <div class="slope-line"></div>
       </div>
       <div class="card-body">
         <div class="card-tag">ARCADE · ENDLESS</div>
         <div class="card-title">SLOPE</div>
-        <div class="card-desc">Roll a ball down an endless neon slope. Dodge obstacles, don't fall off the edge. How far can you go?</div>
-        <div class="card-meta">
-          <span class="badge blue">⚡ ADDICTIVE</span>
-          <span class="badge">ARCADE</span>
-        </div>
+        <div class="card-desc">Roll a ball down an endless neon slope. Dodge obstacles, don't fall off.</div>
+        <div class="card-meta"><span class="badge blue">⚡ ADDICTIVE</span><span class="badge">ARCADE</span></div>
         <a class="play-btn" href="slope.html">PLAY NOW <span class="arrow">→</span></a>
       </div>
     </div>
@@ -474,18 +524,164 @@ footer {
     <div class="game-card">
       <div class="card-glow"></div>
       <div class="card-thumb thumb-eggy">
-        <div class="eggy-dots"></div>
         <div class="game-wordmark">EGGY<br><span>CAR</span></div>
       </div>
       <div class="card-body">
         <div class="card-tag">PHYSICS · CASUAL</div>
         <div class="card-title">EGGY CAR</div>
-        <div class="card-desc">Balance an egg on top of your car while driving through bumpy hills. Don't crack the egg. Don't crash either.</div>
-        <div class="card-meta">
-          <span class="badge pink">🥚 FUN</span>
-          <span class="badge">CASUAL</span>
-        </div>
+        <div class="card-desc">Balance an egg on your car while driving bumpy hills. Don't crack it.</div>
+        <div class="card-meta"><span class="badge pink">🥚 FUN</span><span class="badge">CASUAL</span></div>
         <a class="play-btn" href="eggycar.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Escape Road -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-escape">
+        <div class="game-wordmark">ESCAPE<br><span>ROAD</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">ACTION · DRIVING</div>
+        <div class="card-title">ESCAPE ROAD</div>
+        <div class="card-desc">Outrun the cops on an endless road. Dodge traffic and don't get caught.</div>
+        <div class="card-meta"><span class="badge red">🚨 INTENSE</span><span class="badge">ACTION</span></div>
+        <a class="play-btn" href="escaperoad.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Basketball Stars -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-basketball">
+        <div class="game-wordmark">BBALL<br><span>STARS</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">SPORTS · BASKETBALL</div>
+        <div class="card-title">BASKETBALL STARS</div>
+        <div class="card-desc">1v1 basketball showdowns. Dribble, dunk, and destroy your opponent.</div>
+        <div class="card-meta"><span class="badge orange">🏀 LIT</span><span class="badge">SPORTS</span></div>
+        <a class="play-btn" href="basketballstars.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Cookie Clicker -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-cookie">
+        <div class="game-wordmark">COOKIE<br><span>CLICKER</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">IDLE · CLICKER</div>
+        <div class="card-title">COOKIE CLICKER</div>
+        <div class="card-desc">Click cookies. Buy upgrades. Bake more cookies. An endless loop of delicious addiction.</div>
+        <div class="card-meta"><span class="badge gold">🍪 CLASSIC</span><span class="badge">IDLE</span></div>
+        <a class="play-btn" href="cookieclicker.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Flappy Bird -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-flappy">
+        <div class="game-wordmark">FLAPPY<br><span>BIRD</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">ARCADE · TAP</div>
+        <div class="card-title">FLAPPY BIRD</div>
+        <div class="card-desc">Tap to fly. Dodge the pipes. Try not to rage quit. The OG frustrating classic.</div>
+        <div class="card-meta"><span class="badge new">🐦 OG</span><span class="badge">ARCADE</span></div>
+        <a class="play-btn" href="flappybird.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Geometry Dash -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-geometry">
+        <div class="game-wordmark">GEO<br><span>DASH</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">RHYTHM · PLATFORMER</div>
+        <div class="card-title">GEOMETRY DASH</div>
+        <div class="card-desc">Jump and fly to the beat. One mistake and you start over. Pure rhythm and rage.</div>
+        <div class="card-meta"><span class="badge purple">⬛ HARD</span><span class="badge">RHYTHM</span></div>
+        <a class="play-btn" href="geometrydash.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Hole.io -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-holeio">
+        <div class="game-wordmark">HOLE<br><span>.IO</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">IO · CASUAL</div>
+        <div class="card-title">HOLE.IO</div>
+        <div class="card-desc">Control a black hole and swallow everything in sight. Grow bigger, dominate the city.</div>
+        <div class="card-meta"><span class="badge teal">🕳️ CHILL</span><span class="badge">IO GAME</span></div>
+        <a class="play-btn" href="holeio.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Stickman Hook -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-stickman">
+        <div class="game-wordmark">STICK<br><span>HOOK</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">SKILL · SWING</div>
+        <div class="card-title">STICKMAN HOOK</div>
+        <div class="card-desc">Swing from hook to hook like a stickman Spider-Man. Time your swings perfectly.</div>
+        <div class="card-meta"><span class="badge blue">🕷️ SMOOTH</span><span class="badge">SKILL</span></div>
+        <a class="play-btn" href="stickmanhook.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Subway Surfers -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-subway">
+        <div class="game-wordmark">SUBWAY<br><span>SURFERS</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">ENDLESS · RUNNER</div>
+        <div class="card-title">SUBWAY SURFERS</div>
+        <div class="card-desc">Run from the inspector through endless subway tracks. Dodge trains and collect coins.</div>
+        <div class="card-meta"><span class="badge pink">🏃 ICONIC</span><span class="badge">RUNNER</span></div>
+        <a class="play-btn" href="subwaysurfers.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Tap Tap Shots -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-taptap">
+        <div class="game-wordmark">TAP TAP<br><span>SHOTS</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">SPORTS · TAP</div>
+        <div class="card-title">TAP TAP SHOTS</div>
+        <div class="card-desc">Tap to shoot hoops. Time your shot perfectly and keep the streak alive.</div>
+        <div class="card-meta"><span class="badge teal">🏀 EASY</span><span class="badge">TAP</span></div>
+        <a class="play-btn" href="taptapshots.html">PLAY NOW <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <!-- Tetris -->
+    <div class="game-card">
+      <div class="card-glow"></div>
+      <div class="card-thumb thumb-tetris">
+        <div class="game-wordmark">TET<br><span>RIS</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tag">PUZZLE · CLASSIC</div>
+        <div class="card-title">TETRIS</div>
+        <div class="card-desc">Stack the blocks. Clear the lines. Don't let it reach the top. The timeless original.</div>
+        <div class="card-meta"><span class="badge purple">🧩 CLASSIC</span><span class="badge">PUZZLE</span></div>
+        <a class="play-btn" href="tetris.html">PLAY NOW <span class="arrow">→</span></a>
       </div>
     </div>
 
@@ -496,6 +692,31 @@ footer {
   <div class="footer-brand">ALL GAMES</div>
   <div class="footer-copy">MADE BY ELI · 2025</div>
 </footer>
+
+</div>
+
+<script>
+function checkCode() {
+  const input = document.getElementById('passcode-input');
+  const msg = document.getElementById('access-msg');
+  const val = input.value.trim().toLowerCase();
+
+  if (val === 'github') {
+    msg.textContent = 'ACCESS GRANTED';
+    msg.className = 'access-msg granted';
+    setTimeout(() => {
+      document.getElementById('passcode-screen').style.display = 'none';
+      document.getElementById('main-site').style.display = 'block';
+    }, 800);
+  } else {
+    msg.textContent = 'ACCESS DENIED';
+    msg.className = 'access-msg';
+    input.classList.add('error');
+    input.value = '';
+    setTimeout(() => input.classList.remove('error'), 400);
+  }
+}
+</script>
 
 </body>
 </html>
