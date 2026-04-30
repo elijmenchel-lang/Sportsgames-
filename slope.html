@@ -1,409 +1,235 @@
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <head>
+    <title>Classes</title>
+    <base target="_blank" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/scheng123321/tmm-html5-cdn1@51a72f0faa2d9cd524a0c11b4ca368350f988458/slope/TemplateData/style.css"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://ssl.gstatic.com/classroom/favicon.png"
+    />
+    <script>
+      console.log("Made by Bigfoot9999");
+      function blank() {
+        let inFrame;
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<script defer data-domain="sz-games.github.io" src="https://stats.senty.com.au/js/script.outbound-links.pageview-props.tagged-events.js"></script>
-<script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+        try {
+          inFrame = window !== top;
+        } catch (e) {
+          inFrame = true;
+        }
 
+        if (!inFrame && !navigator.userAgent.includes("Firefox")) {
+          const popup = open("about:blank", "_blank");
+          if (!popup || popup.closed) {
+            alert("Popups are disabled!");
+          } else {
+            const doc = popup.document;
+            const iframe = doc.createElement("iframe");
+            const style = iframe.style;
+            const link = doc.createElement("link");
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C78TXR0XFK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+            doc.title = "Classes";
+            link.rel = "icon";
+            link.href = "https://ssl.gstatic.com/classroom/favicon.png";
+            iframe.src = location.href;
+            style.position = "fixed";
+            style.top = style.bottom = style.left = style.right = 0;
+            style.border = style.outline = "none";
+            style.width = style.height = "100%";
 
-  gtag('config', 'G-C78TXR0XFK');
-</script>
+            doc.body.appendChild(iframe);
+            location.replace("https://google.com");
+          }
+        }
+        //made by Bigfoot9999
+        function clockTime() {
+          var date = new Date();
+          var h = date.getHours(); // 0 - 23
+          var m = date.getMinutes(); // 0 - 59
+          var s = date.getSeconds(); // 0 - 59
+          var session = "AM";
 
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="https://github.com/sz-games/home/blob/main/G.png?raw=true">
-<title>Play Slope On Sz Games</title>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('https://sz-games.github.io/service-worker.js');
-  }
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta property="og:site_name" content="Play Slope On Sz Games">
-<script src="./GobalSettings.js"></script>
+          if (h == 0) {
+            h = 12;
+          }
 
-<meta name="description" property="og:description" content="Slope is an exciting 3D game where you guide a rolling ball down a steep slope, dodging obstacles and making sharp turns. Test your reflexes in this addictive, endless runner packed with vibrant visuals and nonstop action!"> 
-<meta name="description"  content="Slope is an exciting 3D game where you guide a rolling ball down a steep slope, dodging obstacles and making sharp turns. Test your reflexes in this addictive, endless runner packed with vibrant visuals and nonstop action!"> 
+          if (h > 12) {
+            h = h - 12;
+            session = "PM";
+          }
 
+          h = h < 10 ? "0" + h : h;
+          m = m < 10 ? "0" + m : m;
+          s = s < 10 ? "0" + s : s;
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "VideoGame",
-    "name": "Slope",
-    "description": "Slope is an exciting 3D game where you guide a rolling ball down a steep slope, dodging obstacles and making sharp turns. Test your reflexes in this addictive, endless runner packed with vibrant visuals and nonstop action!",
-    "image": "https://sz-games.github.io/cover/slope.webp",
-    "url": "https://sz-games.github.io/Slope.html",
-    "operatingSystem": "Web",
-    "applicationCategory": "Game",
-    "playMode": "SinglePlayer"
-  }
-</script>
+          var time = h + ":" + m + ":" + s + " " + session;
+          document.getElementById("MyClock").innerText = time;
+          document.getElementById("MyClock").textContent = time;
 
+          setTimeout(clockTime, 1000);
+        }
 
-<meta content="game" property="og:type">
-<meta name="description" property="twitter:description" content="BitLife is a popular life simulation game where players control a virtual character’s life from birth to death. Make key decisions that shape careers, relationships, and unexpected events, all while experiencing different life paths. Play BitLife to explore a unique and engaging way of simulating life choices."> 
+        clockTime();
 
-<meta
-name="keywords"
-content="sz games, slope, slope game, slope unblocked, play slope online, slope 3D game, slope ball game, endless runner game, play slope unblocked, slope online game, slope browser game, slope game free, slope no download, slope free online, slope for school, play slope at school, unblocked slope, play slope now, slope 3D ball, slope for PC, slope fast-paced game, play slope anywhere, school games, unblocked games, slope challenge, slope game free play, online slope game, free online games, play free games, free HTML5 games, sz, sz-games, online games"
-/>
+        document.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            const exploit = document.getElementById("exploit").value;
+            const siteload = window.open("about:blank", "_blank");
+            const doc1 = siteload.document;
+            const iframe1 = doc1.createElement("iframe");
+            const style1 = iframe1.style;
+            const link1 = doc1.createElement("link");
 
+            doc1.title = "Google Drive";
+            iframe1.src = exploit;
+            style1.position = "fixed";
+            style1.border = style1.outline = "none";
+            style1.top = style1.bottom = style1.left = style1.right = 0;
+            style1.width = style1.height = "100%";
 
-</head>
+            link1.rel = "icon";
+            link1.href =
+              "https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png";
 
-
-<style>
-
-  body {
-    margin: 0;
-   overflow: hidden;
-   font-family: Arial, Helvetica, sans-serif;
-   background-color: rgb(117, 117, 117);
-  }
-  
-  </style>
-  </head>
-  <body onresize="resize()">
-  <style>
-      .game {
-          position: absolute;
-  color: white;
-  
-    transform: scale(1.8);
-    z-index: 3;
-    font-family: Arial, Helvetica, sans-serif;
+            doc1.body.appendChild(iframe1);
+          }
+        });
       }
 
-      .loading-screen {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-}
-
-.left-column {
-  width: 30%;
-  padding: 20px;
-  background-color: #1b1b1b;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 2;
-  transition: 1s;
-}
-
-.logo img {
-  width: 55px;
-  margin-top: 10px;
-}
-
-.loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px; /* Adjust this value for spacing between the loader and text */
-}
-
-.loading-circle {
-  width: 25px;
-  height: 25px;
-  border: 4px solid transparent;
-  border-top: 3px solid #5c5c5c;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 15px; /* Remove negative margins */
-}
-
-.loading-text {
-  margin: 0; /* Keep margin to 0 */
-  text-align: center;
-}
-
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.buttons {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.home-button, .skip-loading {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 5px;
-  color: #fff;
-  transition: 0.5s;
-  background-color: #444444b0;
-}
-
-.home-button:hover, .skip-loading:hover {
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 5px;
-  color: #fff;
-  box-shadow: 0px 0px 10px #000000;
-}
-
-.right-column {
-  position: relative;
-  width: 70%;
-  padding: 20px;
-  overflow: hidden;
-}
-
-.cover-grid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  z-index: 1; /* Set behind the left column */
-}
-
-.cover-row {
-  display: flex;
-  justify-content: space-around;
-  gap: 15px;
-  transform: rotate(-10deg);
-}
-
-.cover {
-  flex: 1;
-  max-width: 22%;
-  height: 200px;
-  border-radius: 10px;
-  min-width: 150px;
-  background-size: cover;
-  background-position: center;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-  opacity: 0.9; /* Slight transparency for a subtle effect */
-}
-
-@media (min-width: 1200px) {
-  .cover {
-    height: 225px;
-  }
-}
-@keyframes downan {
-  from {
-    transform: rotate(-10deg) translateY(0); opacity: 1;
-  }
-  to{
-    transform: rotate(-10deg) translateY(20%); opacity: 0;
-  }
-}
-@keyframes closeload {
-  from {
-    transform: scale(1.0); opacity: 1;
-  }
-  to {
-    transform: scale(2.0); opacity: 0;
-
-  }
-}
-</style>
-
-<div id="loadingcontainer" style="transition: 0.5s;  background-color: #272727; position: fixed; width: 100%; height: 100%; display: block; z-index: 100000;">
-  <div class="loading-screen">
-    <div id="leftside" class="left-column">
-      <div class="logo">
-        <img src="../G.png" alt="Logo">
-      </div>
-      <div class="loading-content">
-        <div class="loading-circle"></div>
-        <p class="loading-text">Your Game Is Loading</p>
-      </div>
-      
-      <div class="buttons">
-        <a href="../index.html">
-           <button class="home-button">Home</button>
-        </a>
-        <button class="skip-loading" onclick="skipload()">Skip Loading</button>
-      </div>
-    </div>
-    <div class="right-column">
-      <div class="cover-grid">
-        
-        <div class="cover-row" style="--rotation: -10deg;">
-          <div class="cover" style="background-image: url('../cover/slope.webp');"></div>
-          <div class="cover" style="background-image: url('../cover/Bitlife.png');"></div>
-          <div class="cover" style="background-image: url('../cover/Minecraft.png');"></div>
-          <div class="cover" style="background-image: url('../cover/gunnn.png');"></div>
-        </div>
-        <div class="cover-row" style="--rotation: 10deg;">
-          <div class="cover" style="background-image: url('../cover/lol.jpeg');"></div>
-          <div class="cover" style="background-image: url('../cover/BASKETBRO.png');"></div>
-          <div class="cover" style="background-image: url('../cover/fnaf1.jpeg');"></div>
-          <div class="cover" style="background-image: url('../cover/fnaf2.webp');"></div>
-        </div>
-        <div class="cover-row" style="--rotation: -10deg;">
-          <div class="cover" style="background-image: url('../cover/motox3m.png');"></div>
-          <div class="cover" style="background-image: url('../cover/roblox.jpeg');"></div>
-          <div class="cover" style="background-image: url('../cover/retrobowl.avif');"></div>
-          <div class="cover" style="background-image: url('../cover/pvz.png');"></div>
-        </div>
-        <div class="cover-row" style="--rotation: -10deg;">
-          <div class="cover" style="background-image: url('../cover/EGGYCAR.webp');"></div>
-          <div class="cover" style="background-image: url('../cover/gunnn.png');"></div>
-          <div class="cover" style="background-image: url('../cover/CSGO.png');"></div>
-          <div class="cover" style="background-image: url('../cover/jetpackjoyride.webp');"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
- 
- 
-      window.addEventListener('load', function() {
-
-        
-
-        //document.getElementById('loadingcontainer').style.opacity = 0
-        setTimeout(() => {
-        //  document.getElementById('loadingcontainer').style.display = 'none'
-        }, 800);
-        donewithload()
-      });
-    function skipload() {
-      donewithload()
-    }
-
-    function donewithload() {
-     
-      const elements = document.querySelectorAll('.cover-row');
-      elements.forEach((element, index) => {
-        setTimeout(() => {
-          element.style.animation = 'downan 0.5s'
-          
-          setTimeout(() => {
-            element.style.opacity = 0
-          }, 450);
-        }, index * 200); 
-      });
-      setTimeout(() => {
-        
-        document.getElementById('leftside').style.transform = 'translateX(-200%)'
-        setTimeout(() => {
-          document.getElementById('leftside').style.opacity = 0
-        }, 500);
-        setTimeout(() => {
-          document.getElementById('loadingcontainer').style.animation = 'closeload 0.5s'
-          setTimeout(() => {
-            document.getElementById('loadingcontainer').style.display = 'none'
-
-          }, 450);
-        }, 300);
-      }, 500);
-    }
-
-</script>
-
-
-<iframe frameBorder="0" id="game" style="text-align: center; align-items: center; overflow: hidden; width: 100%; " src="" allowfullscreen></iframe>
-
-<!--h2 onclick="window.location = 'https://sz-games.github.io'" style="display: none; cursor: pointer; position: fixed; bottom: -20px;  ">Back</h2>
-<h2  style="position: fixed; bottom: 10px;">____</h2>
-<h2 onclick="makeFullScreen()" style="cursor: pointer; position: fixed; bottom: 20px;">Fullscreen</h2-->
-<div  style="transition: 0.5s; cursor: pointer; position: fixed; border-radius: 15px; color: rgb(224, 224, 224); background-color: #1d1d1dc0; left: 0; bottom: 0px; margin: 10px;" id="Menu">
-
-
-<span class="material-icons buttonForMenu" style="margin: 5px;" onclick="window.location = 'https://sz-games.github.io'" >
-  arrow_back
-  </span>
-  <span class="material-icons buttonForMenu" style="margin: 5px;" onclick="makeFullScreen()" >
-    fullscreen
-    </span>
-    <script>
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-      if (isMobile) {
-          document.getElementById('Menu').style.transform = "scale(1.1)"
+      //detect iframe first
+      var txt;
+      if (window.frameElement) {
+        //yes i frame SO DONT DO ANYTHING because we already asked
       } else {
-        document.getElementById('Menu').style.transform = "scale(1.0)"
-      }         
+        //no iframe we should ask them
+        promptalert();
+      }
 
-
-    </script>
-</div>
-  
-  <script>
-
-
-
-var isFUll = false
-
-document.body.onkeyup = function(e) {
-  if( e.keyCode == 27 ) {
-    if(isFUll) {
-    //document.getElementById('game').style.width = '800px';
-    }
-  }
-}
-
-function requestFullScreen(element) {
-    // Supports most browsers and their versions.
-    var requestMethod = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || element.msRequestFullscreen;
-    
-    if (requestMethod) { // Native full screen.
-        requestMethod.call(element);
-        let hh = window.innerHeight;
-
-document.getElementById('game').height = hh;
-    } else if (typeof window.ActiveXObject !== "undefined") { // Older IE.
-        var wscript = new ActiveXObject("WScript.Shell");
-        if (wscript !== null) {
-            wscript.SendKeys("{F11}");
+      //alert
+      function promptalert() {
+        if (
+          confirm(
+            "Do you want to open slope in an about:blank page? \ Press ok to open slope in a blank tab! \ Press Cancel to continue to normal website!"
+          )
+        ) {
+          txt = "You pressed OK!";
+          blank();
+        } else {
+          txt = "You pressed Cancel!";
         }
-    }
-}
-var canvas = document.getElementById('game');
+        console.log(txt);
+      }
+    </script>
+    <script src="https://www.id.net/api/user_data/autologin?callback=idnet_autologin&amp;app_id=55961e5ee694aa0ae90003e8"></script>
+    <script src="https://cdn.jsdelivr.net/gh/scheng123321/tmm-html5-cdn1@51a72f0faa2d9cd524a0c11b4ca368350f988458/slope/TemplateData/UnityProgress.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/scheng123321/tmm-html5-cdn1@51a72f0faa2d9cd524a0c11b4ca368350f988458/slope/TemplateData/unityloader41.js"></script>
+    <script type="text/javascript">
+      var gameInstance;
+      window.onload = function () {
+        let bttn = document.createElement("button");
+        bttn.appendChild(document.createTextNode("Click here to play"));
+        bttn.setAttribute("id", "run_game");
+        bttn.style.display = "none";
+        bttn.style.position = "absolute";
+        document.body.appendChild(bttn);
+        bttn.style.display = "block";
+        bttn.style.left =
+          (document.body.clientWidth - bttn.offsetWidth) / 2 + "px";
+        bttn.style.top =
+          (document.body.clientHeight - bttn.offsetHeight) / 2 + "px";
+        bttn.onclick = function () {
+          gameInstance = UnityLoader.instantiate(
+            "gameContainer",
+            "https://cdn.jsdelivr.net/gh/scheng123321/tmm-html5-cdn1@51a72f0faa2d9cd524a0c11b4ca368350f988458/slope/Build/slope.json",
+            {
+              onProgress: UnityProgress,
+              Module: {
+                onRuntimeInitialized: function () {
+                  UnityProgress(gameInstance, "complete");
+                }
+              }
+            }
+          );
+          this.remove();
+        };
+      };
+    </script>
+  </head>
 
-function makeFullScreen() {
+  <body rw4gci="true">
+    <div class="webgl-content">
+      <div
+        id="gameContainer"
+        style="
+          width: 100%;
+          height: 100%;
+          margin: 0px;
+          padding: 0px;
+          border: 0px;
+          position: relative;
+          background: rgb(35, 31, 32);
+        "
+      >
+        <canvas
+          id="#canvas"
+          width="492"
+          height="423"
+          style="cursor: default;"
+        ></canvas>
+        <div class="logo Dark" style="display: none;"></div>
+        <div class="progress Dark" style="display: none;">
+          <div class="empty" style="width: 0%;"></div>
+          <div class="full" style="width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+    <style>
+      button {
+        min-width: 100%;
+        font-family: inherit;
+        appearance: none;
+        border: 0;
+        border-radius: 5px;
+        background: #2c2c2c;
+        color: #fff;
+        padding: 18px 46px;
+        font-size: 28px;
+        cursor: pointer;
+      }
 
-    isFUll = true
-    requestFullScreen(canvas);
-}
+      button:hover {
+        background: #3f3f3f;
+      }
 
+      button:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px #cbd6ee;
+      }
 
-
-let hh = window.innerHeight;
-
-
-document.getElementById('game').height = hh;
-window.onresize = function(event) {
-  let hh = window.innerHeight;
-
-document.getElementById('game').height = hh;
-}
-// Get the text element
-var textElement = document.getElementById("game");
-
-textElement.src = 'https://sz-games.github.io/slope/';
-
-
-  </script>
-
-</body>
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      #bottomText {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-size: 26px;
+      }
+    </style>
+    <script src="blob:https://2123257909-atari-embeds.googleusercontent.com/dcffcc61-5015-44df-85ce-739f295fda34"></script>
+    <br /><br /><br /><br />
+    <p id="bottomText">Welcome to Slope Unblocked!<br />Enjoy</p>
+    <a href="https://tiny.one/ilovetacos" target="_blank">
+      <img
+        src="https://www.creativefabrica.com/wp-content/uploads/2019/08/Cartoon-Taco-1-580x386.jpg"
+        width="145"
+        height="96"
+      />
+    </a>
+  </body>
 </html>
